@@ -1,29 +1,28 @@
-'use client';
-import { Layout, theme } from 'antd';
+'use client'
+
+import { Layout } from "antd";
 
 const AdminContent = ({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) => {
-  const { Content } = Layout;
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-  return (
-    <Content style={{ margin: '24px 16px 0' }}>
-      <div
-        style={{
-          padding: 24,
-          minHeight: 360,
-          background: colorBgContainer,
-          borderRadius: borderRadiusLG,
-        }}
-      >
-        {children}
-      </div>
-    </Content>
-  );
-};
+    const { Content } = Layout;
+
+    return (
+        <Content>
+            <div
+                style={{
+                    padding: 24,
+                    minHeight: 'calc(100vh - 180px)',
+                    // background: "#ccc",
+                    // borderRadius: "#ccc",
+                }}
+            >
+                {children}
+            </div>
+        </Content>
+    )
+}
 
 export default AdminContent;

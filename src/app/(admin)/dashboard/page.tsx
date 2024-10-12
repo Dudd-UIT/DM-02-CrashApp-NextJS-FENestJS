@@ -1,11 +1,20 @@
-'use client';
-import React from 'react';
-import { Layout, theme } from 'antd';
+'use client'
 
-const { Content } = Layout;
+import AdminCard from "@/components/admin/admin.card";
 
 const DashboardPage = () => {
-  return <>Dashboard Page</>;
-};
+
+    return (
+        <div>
+            <AdminCard />
+        </div>
+    )
+}
 
 export default DashboardPage;
+
+
+
+
+
+

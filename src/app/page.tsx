@@ -1,11 +1,13 @@
-import Image from 'next/image';
-import styles from './page.module.css';
+import { auth } from '@/auth';
+import HomePage from '@/components/layout/homepage';
 import { Button } from 'antd';
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth();
   return (
     <div>
-      <Button type="primary">Hi</Button>
+      <HomePage />
+      <Button>Sign in</Button>
     </div>
   );
 }

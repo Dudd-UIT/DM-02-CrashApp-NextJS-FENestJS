@@ -1,27 +1,30 @@
-import React from 'react';
-import { Layout, theme } from 'antd';
-import AdminSideBar from '@/components/layout/admin.sidebar';
-import AdminHeader from '@/components/layout/admin.header';
-import AdminFooter from '@/components/layout/admin.footer';
+import { auth } from '@/auth';
 import AdminContent from '@/components/layout/admin.content';
+import AdminFooter from '@/components/layout/admin.footer';
+import AdminHeader from '@/components/layout/admin.header';
+import AdminSideBar from '@/components/layout/admin.sidebar';
+import { AdminContextProvider } from '@/library/admin.context';
 
-const { Content } = Layout;
-
-const DashboardPage = ({
+const AdminLayout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const session = await auth();
   return (
-    <Layout>
-      <AdminSideBar />
-      <Layout>
-        <AdminHeader />
-        <AdminContent>{children}</AdminContent>
-        <AdminFooter />
-      </Layout>
-    </Layout>
+    <AdminContextProvider>
+      <div style={{ display: 'flex' }}>
+        <div className="left-side" style={{ minWidth: 80 }}>
+          <AdminSideBar />
+        </div>
+        <div className="right-side" style={{ flex: 1 }}>
+          <AdminHeader session={session} />
+          <AdminContent>{children}</AdminContent>
+          <AdminFooter />
+        </div>
+      </div>
+    </AdminContextProvider>
   );
 };
 
-export default DashboardPage;
+export default AdminLayout;
